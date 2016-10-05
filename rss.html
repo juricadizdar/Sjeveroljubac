@@ -1,0 +1,362 @@
+<html lang="en">
+
+<head>
+
+
+    <title>RSS</title>
+
+     
+
+        <meta charset="UTF-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        
+        <script type="text/javascript" src="jquery/jquery/jquery.js"></script>
+        <script type="text/javascript" src="jquery/jquery_mobile/jquery.mobile-1.4.5.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/teme.min.css">
+        <link rel="stylesheet" type="text/css" href="css/structure.css">
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.min.css">
+        <link rel="stylesheet" type="text/css" href="css/jqm-icon-pack-fa.css">
+    
+          <script>
+              function hideAddressBar(){
+  if(document.documentElement.scrollHeight<window.outerHeight/window.devicePixelRatio)
+    document.documentElement.style.height=(window.outerHeight/window.devicePixelRatio)+'px';
+  setTimeout(window.scrollTo(1,1),0);
+}
+window.addEventListener("load",function(){hideAddressBar();});
+window.addEventListener("orientationchange",function(){hideAddressBar();});
+   
+          $(document).on('pageinit', '#page1', function(){
+              
+                url = 'http://www.unin.hr/feed/';
+    $.ajax({
+        type: "GET",
+        url: 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=1000&callback=?&q=' + encodeURIComponent(url),
+        dataType: 'json',
+        error: function(){
+            alert('Unable to load feed, Incorrect path or invalid feed');
+        },
+        success: function(xml){
+            var postlist = xml.responseData.feed.entries;
+            var html = '<div data-role="collapsible-set">';
+            //var i =0;
+            $.each(postlist, function(idx, data) {
+                
+                html += '<div data-role="collapsible" data-inset="true" data-theme="a" data-content-theme="a">';
+                html += '<h3>' + data.title + '</h3>';
+                html += '<strong>' + data.contentSnippet + '</strong><br>';
+                html += '<strong style="font-weight: lighter;">' + data.author + '</strong><br>';
+                html += '<strong style="font-weight: lighter;">' + data.publishedDate + '</strong><br>';
+                html += '<strong style="font-weight: lighter;">' + data.content + '</strong><br>';
+                html += '</div>';
+              
+            });
+        
+            html += '</div>';
+            $("#postlist1").append(html);
+            
+           // $("#postlist div[data-role=listview]").listview();
+            $("#postlist1 div[data-role=collapsible-set]").collapsibleset();
+           $("#postlist1 div[data-role=collapsible]").collapsible(); 
+           $("#postlist1 a[data-role=button]").button();
+        }
+    });
+          });
+   $(document).on('pageinit', '#page2', function(){ 
+    url = 'http://www.unin.hr/category/aktualno/feed/';
+    $.ajax({
+        type: "GET",
+        url: 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=1000&callback=?&q=' + encodeURIComponent(url),
+        dataType: 'json',
+        error: function(){
+            alert('Unable to load feed, Incorrect path or invalid feed');
+        },
+        success: function(xml){
+            var postlist = xml.responseData.feed.entries;
+            var html = '<div data-role="collapsible-set" data-inset="true">';
+            $.each(postlist, function(idx, data) {
+                html += '<div data-role="collapsible" data-inset="true" data-theme="a" data-content-theme="a">';
+                html += '<h3>' + data.title + '</h3>';
+                html += '<strong>' + data.contentSnippet + '</strong><br>';
+                html += '<strong style="font-weight: lighter;">' + data.author + '</strong><br>';
+                html += '<strong style="font-weight: lighter;">' + data.publishedDate + '</strong><br>';
+                html += '<strong style="font-weight: lighter;">' + data.content + '</strong><br>';
+                html += '</div>';
+            });
+            html += '</div>';
+            $("#postlist2").append(html);
+            
+           // $("#postlist div[data-role=listview]").listview();
+            $("#postlist2 div[data-role=collapsible-set]").collapsibleset();
+           $("#postlist2 div[data-role=collapsible]").collapsible(); 
+           $("#postlist2 a[data-role=button]").button();
+        }
+    });
+});
+$(document).on('pageinit', '#page3', function(){ 
+    url = 'http://www.unin.hr/tag/primary/feed/';
+    $.ajax({
+        type: "GET",
+        url: 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=1000&callback=?&q=' + encodeURIComponent(url),
+        dataType: 'json',
+        error: function(){
+            alert('Unable to load feed, Incorrect path or invalid feed');
+        },
+        success: function(xml){
+            var postlist = xml.responseData.feed.entries;
+            var html = '<div data-role="collapsible-set" data-inset="true">';
+            $.each(postlist, function(idx, data) {
+                html += '<div data-role="collapsible" data-inset="true" data-theme="a" data-content-theme="a">';
+                html += '<h3>' + data.title + '</h3>';
+                html += '<strong>' + data.contentSnippet + '</strong><br>';
+                html += '<strong style="font-weight: lighter;">' + data.author + '</strong><br>';
+                html += '<strong style="font-weight: lighter;">' + data.publishedDate + '</strong><br>';
+                html += '<strong style="font-weight: lighter;">' + data.content + '</strong><br>';
+                html += '</div>';
+            });
+            html += '</div>';
+            $("#postlist3").append(html);
+            
+           // $("#postlist div[data-role=listview]").listview();
+            $("#postlist3 div[data-role=collapsible-set]").collapsibleset();
+           $("#postlist3 div[data-role=collapsible]").collapsible(); 
+           $("#postlist3 a[data-role=button]").button();
+        }
+    });
+    });
+    $(document).on('pageinit', '#page4', function(){ 
+    url = 'http://www.unin.hr/tag/secondary/feed/';
+    $.ajax({
+        type: "GET",
+        url: 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=1000&callback=?&q=' + encodeURIComponent(url),
+        dataType: 'json',
+        error: function(){
+            alert('Unable to load feed, Incorrect path or invalid feed');
+        },
+        success: function(xml){
+            var postlist = xml.responseData.feed.entries;
+            var html = '<div data-role="collapsible-set" data-inset="true">';
+            $.each(postlist, function(idx, data) {
+                html += '<div data-role="collapsible" data-inset="true" data-theme="a" data-content-theme="a">';
+                html += '<h3>' + data.title + '</h3>';
+                html += '<strong>' + data.contentSnippet + '</strong><br>';
+                html += '<strong style="font-weight: lighter;">' + data.author + '</strong><br>';
+                html += '<strong style="font-weight: lighter;">' + data.publishedDate + '</strong><br>';
+                html += '<strong style="font-weight: lighter;">' + data.content + '</strong><br>';
+                html += '</div>';
+            });
+            html += '</div>';
+            $("#postlist4").append(html);
+            
+           // $("#postlist div[data-role=listview]").listview();
+            $("#postlist4 div[data-role=collapsible-set]").collapsibleset();
+           $("#postlist4 div[data-role=collapsible]").collapsible(); 
+           $("#postlist4 a[data-role=button]").button();
+        }
+    });
+});
+$(document).on('pageinit', '#page5', function(){ 
+    url = 'http://www.unin.hr/tag/other/feed/';
+    $.ajax({
+        type: "GET",
+        url: 'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=1000&callback=?&q=' + encodeURIComponent(url),
+        dataType: 'json',
+        error: function(){
+            alert('Unable to load feed, Incorrect path or invalid feed');
+        },
+        success: function(xml){
+            var postlist = xml.responseData.feed.entries;
+            var html = '<div data-role="collapsible-set" data-inset="true">';
+            $.each(postlist, function(idx, data) {
+                html += '<div data-role="collapsible" data-inset="true" data-theme="a" data-content-theme="a">';
+                html += '<h3>' + data.title + '</h3>';
+                html += '<strong>' + data.contentSnippet + '</strong><br>';
+                html += '<strong style="font-weight: lighter;">' + data.author + '</strong><br>';
+                html += '<strong style="font-weight: lighter;">' + data.publishedDate + '</strong><br>';
+                html += '<strong style="font-weight: lighter;">' + data.content + '</strong><br>';
+                html += '</div>';
+            });
+            html += '</div>';
+            $("#postlist5").append(html);
+            
+           // $("#postlist div[data-role=listview]").listview();
+            $("#postlist5 div[data-role=collapsible-set]").collapsibleset();
+           $("#postlist5 div[data-role=collapsible]").collapsible(); 
+           $("#postlist5 a[data-role=button]").button();
+        }
+    });
+});
+    
+</script>
+<style>
+    h3{
+    text-transform: uppercase;
+}
+strong{
+    text-transform: none;
+}
+.ui-navbar{
+    text-transform: none;
+}
+#postlist{
+    color: black;
+}
+        .ui-header .ui-title {
+  overflow: visible !important;
+  white-space: normal !important;
+}
+.ui-page{
+    background: white;
+}
+img{
+    width: 100%;
+}
+p{
+    text-transform: none;
+}
+</style>
+</head>
+
+<body onload="hideAddressBar()">
+<div data-role="page" id="homepage">
+                 <div id="pok" style=" text-shadow: none; margin-left: 5px;">
+                    <p>Prijavljeni ste kao:<strong id="ime"></strong><br>
+                    Želite li se odjaviti<a href="" id="eraser" style=" margin-left: 15px;" data-role="button" data-icon="eraser" data-iconpos="notext" data-inline="true">Odjavite se</a></p>
+                </div>
+            <div data-role="header" data-theme="a" data-position="fixed">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="a"></a><h3>Sjeveroljubac</h3>
+                <div style=" float: right; margin-top: -45.5px; margin-right: -5px;">
+                    <a href="index.html" style=" float: right;" data-role="button" data-inline="true" data-icon="home" data-iconpos="notext" rel="external">&nbsp;</a>
+                    <a href="#pokazi" id="log" style=" float: end;" data-role="button" data-inline="true" data-icon="lock" data-iconpos="notext" rel="external">&nbsp;</a>
+                    <script>
+                        $("#pok").hide();
+                        $('#log').click( function() {
+                            $("#pok").slideToggle( "slow" );
+                            $("#ime").html(localStorage.getItem('usrname'));            
+                    });
+                    $('#eraser').click( function() {
+                    localStorage.removeItem('usrname');
+                    localStorage.removeItem('pass');
+                    localStorage.removeItem('chkbx');
+                    location.href="index.html";
+                    return false;
+                    });
+                    </script>
+                </div>
+            </div>
+    <div data-role="content"  data-theme="c" id ="postlist" >
+        <img src="img/rss.jpg"/>
+        <ul data-role="listview" id="swipelist" data-theme="a">
+                    <li id="page1"><a href="#page1">Sve vijesti (kronološki)</a></li>
+                    <li id="page2"><a href="#page2">Aktualno</a></li>
+                    <li id="page3"><a href="#page3">Izdvojene novosti</a></li>
+                    <li id="page4"><a href="#page4">Novosti, objave i informacije</a></li>
+                    <li id="page5"><a href="#page5">Ostale vijesti</a></li>
+        </ul>
+    </div>
+    <div data-role="footer" data-theme="a" data-position="fixed">
+                <div data-role="navbar">
+		<ul>
+                    <li id="page1"><a href="odjeli.html" data-icon="th" data-ajax="false">Odjeli</a></li>
+                    <li id="page2"><a href="profesori.html" data-icon="list" data-ajax="false">Profesori</a></li>
+                    <li id="page3"><a href="rss.html" data-icon="rss" data-ajax="false" class="ui-btn-active ui-state-persist">RSS feed</a></li> 
+		</ul>
+	</div>
+    </div>
+</div>
+    
+<div data-role="page" id="page1" data-theme="a">
+    <div data-role="header" data-theme="a" data-position="fixed">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="a" ></a><h3>Sjeveroljubac</h3>
+            </div>
+    <div data-role="content"  data-theme="a" id ="postlist1"></div>
+    <div data-role="footer" data-theme="a" data-position="fixed">
+        <div data-role="navbar">
+		<ul>
+                    <li id="page1"><a href="odjeli.html" data-icon="th" data-ajax="false">Odjeli</a></li>
+                    <li id="page2"><a href="profesori.html" data-icon="list" data-ajax="false">Profesori</a></li>
+                    <li id="page3"><a href="rss.html" data-icon="rss" data-ajax="false" class="ui-btn-active ui-state-persist">RSS feed</a></li> 
+		</ul>
+	</div>
+    </div>
+</div>
+    
+<div data-role="page" id="page2" data-theme="a">
+            <div data-role="header" data-theme="a" data-position="fixed">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="a"></a><h3>Sjeveroljubac</h3>
+            </div>
+    <div data-role="content"  data-theme="a" id ="postlist2"></div>
+    <div data-role="footer" data-theme="a" data-position="fixed">
+                <div data-role="navbar">
+		<ul>
+                    <li id="page1"><a href="odjeli.html" data-icon="th" data-ajax="false">Odjeli</a></li>
+                    <li id="page2"><a href="profesori.html" data-icon="list" data-ajax="false">Profesori</a></li>
+                    <li id="page3"><a href="rss.html" data-icon="rss" data-ajax="false" class="ui-btn-active ui-state-persist">RSS feed</a></li> 
+		</ul>
+	</div>
+    </div>
+</div>
+    
+<div data-role="page" id="page3" data-theme="a">
+            <div data-role="header" data-theme="a" data-position="fixed">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="a"></a><h3>Sjeveroljubac</h3>
+            </div>
+    <div data-role="content"  data-theme="a" id ="postlist3"></div>
+    <div data-role="footer" data-theme="a" data-position="fixed">
+                <div data-role="navbar">
+		<ul>
+                    <li id="page1"><a href="odjeli.html" data-icon="th" data-ajax="false">Odjeli</a></li>
+                    <li id="page2"><a href="profesori.html" data-icon="list" data-ajax="false">Profesori</a></li>
+                    <li id="page3"><a href="rss.html" data-icon="rss" data-ajax="false" class="ui-btn-active ui-state-persist">RSS feed</a></li> 
+		</ul>
+	</div>
+    </div>
+</div>
+    
+<div data-role="page" id="page4" data-theme="a">
+            <div data-role="header" data-theme="a" data-position="fixed">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="a"></a><h3>Sjeveroljubac</h3>
+            </div>
+    <div data-role="content"  data-theme="a" id ="postlist4"></div>
+    <div data-role="footer" data-theme="a" data-position="fixed">
+                <div data-role="navbar">
+		<ul>
+                    <li id="page1"><a href="odjeli.html" data-icon="th" data-ajax="false">Odjeli</a></li>
+                    <li id="page2"><a href="profesori.html" data-icon="list" data-ajax="false">Profesori</a></li>
+                    <li id="page3"><a href="rss.html" data-icon="rss" data-ajax="false" class="ui-btn-active ui-state-persist">RSS feed</a></li> 
+		</ul>
+	</div>
+    </div>
+</div>
+    
+<div data-role="page" id="page5" data-theme="a" data-add-back-btn="true" data-back-btn-text="Nazad">
+            <div data-role="header" data-theme="a" data-position="fixed">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="a" ></a><h3>Sjeveroljubac</h3>
+            </div>
+    <div data-role="content"  data-theme="a" id ="postlist5"></div>
+    <div data-role="footer" data-theme="a" data-position="fixed">
+                <div data-role="navbar">
+		<ul>
+                    <li id="page1"><a href="odjeli.html" data-icon="th" data-ajax="false">Odjeli</a></li>
+                    <li id="page2"><a href="profesori.html" data-icon="list" data-ajax="false">Profesori</a></li>
+                    <li id="page3"><a href="rss.html" data-icon="rss" data-ajax="false" class="ui-btn-active ui-state-persist">RSS feed</a></li> 
+		</ul>
+	</div>
+    </div>
+</div>
+    <script>
+            $(document).on('pagebeforeshow', function () {
+    $(this).find('a[data-rel=back]').buttonMarkup({
+        iconpos: 'notext'
+    });
+});
+</script>
+<script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+
+</html>

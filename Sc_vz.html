@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+   <head>
+       <title>Sveučilišni centar Varaždin</title>
+        <meta charset="UTF-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        
+        <script type="text/javascript" src="jquery/jquery/jquery.js"></script>
+        <script type="text/javascript" src="jquery/jquery_mobile/jquery.mobile-1.4.5.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/teme.min.css">
+        <link rel="stylesheet" type="text/css" href="css/structure.css">
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.min.css">
+        <link rel="stylesheet" type="text/css" href="css/jqm-icon-pack-fa.css">
+        
+        <script type="text/javascript" src="https://maps.google.com/maps/api/js?v=3&sensor=false&language=hr"></script>
+        <script>
+            $(document).on('pagebeforeshow', function () {
+    $(this).find('a[data-rel=back]').buttonMarkup({
+        iconpos: 'notext'
+    });
+});
+</script> 
+        <script type="text/javascript">
+
+            var map,
+                currentPosition,
+                directionsDisplay, 
+                directionsService,
+                destinationLatitude = 46.299919,
+                destinationLongitude = 16.326297;
+
+            function initializeMapAndCalculateRoute(lat, lon)
+            {
+                directionsDisplay = new google.maps.DirectionsRenderer(); 
+                directionsService = new google.maps.DirectionsService();
+
+                currentPosition = new google.maps.LatLng(lat, lon);
+
+                map = new google.maps.Map(document.getElementById('map_canvas'), {
+                   zoom: 15,
+                   center: currentPosition,
+                   mapTypeId: google.maps.MapTypeId.ROADMAP
+                 });
+
+                directionsDisplay.setMap(map);
+
+                 var currentPositionMarker = new google.maps.Marker({
+                    position: currentPosition,
+                    map: map,
+                    title: "Current position"
+                });
+                calculateRoute();
+            }
+
+            function locError(error) {
+                 alert('the current position could not be located');
+            }
+
+            function locSuccess(position) {
+                // initialize map with current position and calculate the route
+                initializeMapAndCalculateRoute(position.coords.latitude, position.coords.longitude);
+            }
+
+            function calculateRoute() {
+
+                var targetDestination =  new google.maps.LatLng(destinationLatitude, destinationLongitude);
+                if (currentPosition != '' && targetDestination != '') {
+
+                    var request = {
+                        origin: currentPosition, 
+                        destination: targetDestination,
+                        travelMode: google.maps.DirectionsTravelMode["DRIVING"]
+                    };
+
+                    directionsService.route(request, function(response, status) {
+                        if (status == google.maps.DirectionsStatus.OK) {
+                            directionsDisplay.setPanel(document.getElementById("directions"));
+                            directionsDisplay.setDirections(response); 
+
+                            $("#results").show();
+                        }
+                        else {
+                            $("#results").hide();
+                        }
+                    });
+                }
+                else {
+                    $("#results").hide();
+                }
+            }
+
+            $(document).on("pagebeforeshow", "#map_page", function() {
+                // find current position and on success initialize map and calculate the route
+                navigator.geolocation.getCurrentPosition(locSuccess, locError, {timeout: 10000, enableHighAccuracy: true});
+            });
+
+        </script>
+        <style>
+                        .ui-header .ui-title {
+  overflow: visible !important;
+  white-space: normal !important;
+}
+body{
+    text-transform: none;
+    text-shadow: none;
+}
+    p{
+     
+        font-family: Arial, Helvetica, sans-serif;
+        color: gray;
+    }
+    h3{
+    text-transform: uppercase;
+}
+.ui-page{
+    background: white;
+}
+.ui-content{
+    background: white;
+}
+#directions{
+    text-shadow: none;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: gray;
+}
+#map_canvas{
+    text-shadow: none;
+}
+        </style>
+    </head>
+    <body>
+        <div id="map_page" data-role="page">
+            <div data-role="header" data-theme="a" data-position="fixed">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="a" ></a><h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content">   
+                
+                    <div id="map_canvas" style="height:320px;"></div>
+               
+                <div id="results" style="display:none;">
+                    <div id="directions"></div>
+                </div>
+            </div>
+        </div>  
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>

@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <!--
+        Customize this policy to fit your own app's needs. For more guidance, see:
+            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+        Some notes:
+            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+                * Enable inline JS: add 'unsafe-inline' to default-src
+        -->
+        <meta charset="UTF-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        
+        <script type="text/javascript" src="jquery/jquery/jquery.js"></script>
+        <script type="text/javascript" src="jquery/jquery_mobile/jquery.mobile-1.4.5.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/teme.min.css">
+        <link rel="stylesheet" type="text/css" href="css/structure.css">
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.min.css">
+        <link rel="stylesheet" type="text/css" href="css/jqm-icon-pack-fa.css">
+        <title>Sjeveroljubac</title>
+        
+        <script>
+function hideAddressBar(){
+  if(document.documentElement.scrollHeight<window.outerHeight/window.devicePixelRatio)
+    document.documentElement.style.height=(window.outerHeight/window.devicePixelRatio)+'px';
+  setTimeout(window.scrollTo(1,1),0);
+}
+window.addEventListener("load",function(){hideAddressBar();});
+window.addEventListener("orientationchange",function(){hideAddressBar();});
+
+               $(document).on('pagebeforeshow', function () {
+            $(this).find('a[data-rel=back]').buttonMarkup({
+            iconpos: 'notext'
+    });
+    });
+            </script>
+
+        <style>
+        .ui-header .ui-title {
+  overflow: visible !important;
+  white-space: normal !important;
+}
+body{
+    text-transform: none;
+    font-family: Arial, Helvetica, sans-serif;
+}
+ 
+.sje{
+    width: 40%;
+    position: relative;
+    left: 30%;
+    top: 10px;
+    
+}
+h3{
+    text-transform: uppercase;
+}
+h2{
+    text-align: center;
+}
+#pbol{
+    font-weight: bold;
+}
+p{
+     
+        font-family: Arial, Helvetica, sans-serif;
+        color: gray
+    }
+    #top{
+        height: 57px;
+        width: 100%;
+        position: relative;
+        top: 0;
+        background: url("img/top.png") no-repeat top center;
+        
+    }
+    #right{
+        height: 27px;
+        width: 43px;
+        position: relative;
+        right: -15px;
+        top: 15px;
+        float: right;
+        background: url("img/right.png") no-repeat right center;
+    }
+    #left{
+        height: 37px;
+        width: 43px;
+        position: relative;
+        top: 10px;
+        left: -15px;
+        float: left;
+        background: url("img/left.png") no-repeat left center;
+    }
+    #bottom{
+        height: 60px;
+        width: 100%;
+        position: relative;
+        bottom: 0;
+        background: url("img/bottom.png") no-repeat bottom center;
+    }
+    .ui-content{
+        margin-top: -15px;
+    }
+    </style>
+    </head>
+    
+    <body class="container" onload="hideAddressBar()">
+        <div data-role="page" id="homepage" data-theme="c"><!-- početak homepage -->
+            
+            <div data-role="header" data-theme="c" data-position="fixed">
+                <h3>Sjeveroljubac</h3>
+                <a href="#dialog" data-iconpos="notext" data-icon="info" data-transition="flip" 
+                   data-direction="reverse" class="ui-btn-right">&nbsp;</a>  
+            </div>
+            <div id="top"></div><br>
+            <img src="img/sjever.png" class="sje"/>
+                               
+            <div data-role="content" id="content">
+                
+                <center>
+                <p>Dobrodošli na mobilnu aplikaciju Sjeveroljubac, namijenjenu za sve studente Sveučilišta Sjever.</p>
+                
+                </center><br>
+                
+                <center>
+                    <strong>Odaberite svoj status na Sjeveru</strong><br>
+                </center>
+                    <div id="left"></div>
+                    <div id="right"></div>
+                    
+                    <center>
+                        <a href="postani_sjeveroljubac.html" style=" margin-left: -10px" data-ajax="false" data-role="button" data-inline="true" data-theme="c" class="blink">&nbsp;&nbsp;&nbsp;Gost&nbsp;&nbsp;&nbsp;</a>
+                    <a href="LDAP_login.html" data-ajax="false" style=" margin-left: -5px; margin-right: -10px;" data-role="button" data-inline="true" data-theme="c" class="blink">Student</a>
+                    </center>
+                <br><br>
+                <center>
+                <strong>Povežite se sa Sveučilištem Sjever na društvenim mrežama</strong>
+                <div style=" margin-left: 10px;"><br>
+                <a href="https://m.facebook.com/pages/Sveu%C4%8Dili%C5%A1te-Sjever-University-North/781535971918819" data-role="button" data-inline="true" rel="external" data-icon="facebook" data-iconpos="notext">&nbsp;</a>
+                <a href="https://plus.google.com/+UninHr/about" data-role="button" data-inline="true" data-icon="google-plus" data-iconpos="notext" rel="external">&nbsp;</a>
+                <a href="https://linkedin.com/edu/school?id=162166&trk=edu-cp-title" data-role="button" data-inline="true" data-icon="linkedin" data-iconpos="notext" rel="external">&nbsp;</a>
+                <a href="https://m.twitter.com/UniNorthHR" data-role="button" data-inline="true" data-icon="twitter" data-iconpos="notext" rel="external">&nbsp;</a>
+                </div>
+                </center>
+            </div><br>
+                <div id="bottom"></div> 
+            <div data-role="footer" data-theme="c" data-position="fixed">
+                <h2>Sjever rocks!</h2>
+            </div>
+            
+        </div><!-- kraj homepage-->
+        
+        
+        <div data-role="dialog" id="dialog" data-theme="c"><!--početak dialog-->
+            
+            <div data-role="header" data-theme="c">
+                <h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content" data-theme="c">
+                <p>Aplikacija je stvorena s namjerom kako bi studentima Sveučilišta Sjever olakšala pristup do informacija 
+                   odnosno kako bi stdudent mogao s jednog mjesta pristupiti željenim informacijama. Aplikacija se sastoji
+                   od poveznica kao što su službena stranica sveučilišta, službeni sveučilišni mail, Studomat i Moodlea. Isto tako, 
+                   za sve studente sveučilišta potrebna je prijava u sustav pomoću službenog računa.</p>
+                <center><strong>Nastavite sa odabirom svog statusa na Sjeveru</strong><br>
+                <a href="postani_sjeveroljubac.html" data-ajax="false" data-role="button" data-inline="true" data-theme="c">&nbsp;&nbsp;&nbsp;Gost&nbsp;&nbsp;&nbsp;</a>
+                <a href="LDAP_login.html" data-role="button" data-ajax="false" data-inline="true" data-theme="c">Student</a>
+                </center>
+            </div>
+        
+        </div><!--kraj dialog-->
+        
+               
+      
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+       
+        
+        </body>
+</html>

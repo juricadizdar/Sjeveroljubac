@@ -1,0 +1,265 @@
+<html lang="en">
+
+<head>
+
+
+    <title>Postani Sjeveroljubac</title>
+
+        <meta charset="UTF-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        
+        <script type="text/javascript" src="jquery/jquery/jquery.js"></script>
+        <script type="text/javascript" src="jquery/jquery_mobile/jquery.mobile-1.4.5.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/teme.min.css">
+        <link rel="stylesheet" type="text/css" href="css/structure.css">
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.min.css">
+        <link rel="stylesheet" type="text/css" href="css/jqm-icon-pack-fa.css">
+          
+          
+          <script>
+              function hideAddressBar(){
+  if(document.documentElement.scrollHeight<window.outerHeight/window.devicePixelRatio)
+    document.documentElement.style.height=(window.outerHeight/window.devicePixelRatio)+'px';
+  setTimeout(window.scrollTo(1,1),0);
+}
+window.addEventListener("load",function(){hideAddressBar();});
+window.addEventListener("orientationchange",function(){hideAddressBar();});
+
+              $(document).on('pageinit', '#page4', function(){  
+                url = 'http://www.unin.hr/category/upisi_preddiplomski/';
+               
+        $.ajax({
+        type: "GET",
+        url: "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20html%20where%20url%3D%22http%3A%2F%2Fwww.unin.hr%2Fcategory%2Fupisi_preddiplomski%2F%22%20and%20xpath%3D%22%2F%2Fdiv%5Bcontains(%40class%2C%20'article')%5D%22&format=json&callback=",
+        dataType: 'json',
+        async: true,
+        error: function(){
+            alert('Unable to load, Incorrect path or invalid data');},
+            
+        success: function(data) {
+        var ako = data.query.results.div.length;
+        //console.log(ako);
+        var output = '<ul data-role="listview">';
+        for (var i=0; i<ako; i++){
+            
+            var aa = data.query.results.div[i].div[0].div.h1.a.content;
+            var ss = data.query.results.div[i].div[0].div.h1.a.href;
+            var cc = data.query.results.div[i].div[0].div.p;  
+            output+='<li>';
+            output+='<a href="' +ss+ '">';
+            output+='<h3>'+ aa +'</h3>';
+            
+            if ( typeof cc !== 'undefined'){
+                //console.log(cc);
+                output += '<p>'+cc+'</p>';
+                //console.log(output);
+            }
+            output += '</a>';
+            output += '</li>';
+        }
+        
+        output+='</ul>';
+    
+    $("#postlist5").html(output);
+
+    $("#postlist5 ul[data-role=listview]").listview();
+    $("#postlist5 div[data-role=collapsible]").collapsible();
+    
+    }
+});
+});
+
+ 
+          </script>
+          
+             <script>
+            $(document).on('pagebeforeshow', function () {
+    $(this).find('a[data-rel=back]').buttonMarkup({
+        iconpos: 'notext'
+    });
+});
+</script> 
+<style>
+            .ui-header .ui-title {
+  overflow: visible !important;
+  white-space: normal !important;
+}
+body{
+    text-transform: none;
+}
+    p{
+     
+        font-family: Arial, Helvetica, sans-serif;
+        color: gray
+    }
+    h3{
+    text-transform: uppercase;
+}
+.ui-page{
+    background: white;
+}
+.ui-content{
+    background: white;
+}
+
+</style>
+    </head>
+    <body onload="hideAddressBar()">
+        <div data-role="page" id="homepage">
+            <div data-role="header" data-theme="a" data-position="fixed">
+                <a href="#" data-ajax="false" data-rel="back" data-icon="arrow-l" data-theme="a"></a><h3>Sjeveroljubac</h3>
+                <a href="index.html" data-ajax="false" data-iconpos="notext" data-icon="home" data-transition="flip" 
+                   data-direction="reverse" class="ui-btn-right">&nbsp;</a>
+            </div>
+     <div data-role="content"  data-theme="a" id ="postlist">
+        <center><h2>Postani Sjeveroljubac</h2></center>
+        <img src="img/plakat.jpg" style="width: 100%;"/>
+        <ul data-role="listview" id="swipelist" data-theme="a" style="margin-top: 20px;">
+                    <li id="page1"><a href="#page1">O Sveučilištu </a></li>
+                    <li id="page2"><a href="#page2">Programi</a></li>
+                    <li id="page3"><a href="#page3">Vodič za studente</a></li>
+                    <li id="page4"><a href="#page4">Lokacija</a></li>
+                    <li id="page5"><a href="#page5">Upisi</a></li>
+                    
+        </ul>
+    </div>
+    <div data-role="footer" data-theme="a" data-position="fixed">
+                <h2>Sjever rocks!</h2>
+    </div>
+</div>
+    
+<div data-role="page" id="page1" data-theme="a">
+    <div data-role="header" data-theme="a" data-position="fixed">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="a" ></a><h3>Sjeveroljubac</h3>
+            </div>
+    <div data-role="content"  data-theme="a" id ="postlist1">
+        <h2>Što je Unin?</h2>
+        <p>
+            Sveučilište Sjever je ustanova čiji su trenutni osnivači gradovi Koprivnica i Varaždin, te je 
+            organizirano kroz dva ravnopravna sveučilišna centra koji djeluju u navedenim gradovima. 
+            Dana 12. rujna 2012. godine potpisan je ugovor o partnerstvu gradova Varaždina i Koprivnice,
+            kojim su postavljeni temelji i utvrđene smjernice u razvoju modernog europskog sveučilišta, 
+            orijentiranog prema potrebama lokalne zajednice.
+        </p>
+        
+        <h2>Misija</h2>
+        <p>
+           Misija Sveučilišta Sjever je izobrazba kompetentnog stručnog kadra za potrebe realnog gospodarstva 
+           i zdravstvenog sustava u regiji sjeverozapadne Hrvatske kroz kvalitetno izvođenje stručnih i 
+           diplomskih studija prema zahtjevima Bolonjske deklaracije. U provedbi ovog cilja Sveučilište Sjever 
+           se ustrojava kao dinamična organizacija koja stalno prati, primjenjuje i ugrađuje znanstvene i stručne 
+           spoznaje u osuvremenjivanje postojećih i razvoj novih studijskih programa, promovira koncept cjeloživotnog 
+           obrazovanja te produbljuje i održava veze s gospodarstvom i suradnju sa srodnim visokoškolskim ustanovama 
+           u zemlji i inozemstvu. 
+        </p>
+        
+        <h2>Vizija</h2>
+        <p>
+            Vizija Sveučilišta Sjever je biti vodeća obrazovna, znanstvena, stručna i društveno odgovorna visokoškolska 
+            ustanova za obrazovanje kadrova iz područja tehničkih, ekonomskih, biomedicinskih i zdravstvenih, biotehničkih 
+            i interdisciplinarnih znanosti te umjetničkog područja u sjeverozapadnoj Hrvatskoj.Završeni studenti Sveučilišta 
+            Sjever jesu i ostat će poželjni i zapošljivi stručnjaci zbog visoke razine i širine usvojenih znanja i kompetencija,
+            spremni na samostalan i kreativan rad u struci. U svom radu Sveučilište Sjever njeguje načela kvalitete u 
+            visokom obrazovanju, načela etičnosti, kreativnosti, transparentnosti, suradnje s drugim visokoškolskim 
+            ustanovama te nadasve dobre međuljudske odnose.
+        </p>
+    </div>
+    <div data-role="footer" data-theme="a" data-position="fixed">
+                <h2>Sjever rocks!</h2>
+    </div>
+</div>
+       
+<div data-role="page" id="page2" data-theme="a">
+            <div data-role="header" data-theme="a" data-position="fixed">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="a"></a><h3>Sjeveroljubac</h3>
+            </div>
+    <div data-role="content"  data-theme="a" id ="postlist2">
+        <h2>Studijski programi</h2>
+        <p> Sveučilište Sjever izvodi nastavu na 11 studijskih programa iz tehničkog, biomedicinskog, 
+            društvenog i umjetničkog područja, od čega je 9 studija na preddiplomskoj razini:<br><br>
+
+            Elektrotehnika, s dva usmjerenja:<br>
+            Automatizacija,<br>
+            Biomedicinska elektronika,<br>
+            Proizvodno strojarstvo,<br>
+            Multimedija, oblikovanje i primjena,<br>
+            Tehnička i gospodarska logistika,<br>
+            Graditeljstvo,<br>
+            Sestrinstvo,<br>
+            Novinarstvo,<br>
+            Medijski dizajn i<br>
+            Poslovanje i menadžment u medijima.<br><br>
+            Dva studija na diplomskoj razini:<br>
+
+            Odnosi s javnošću<br>
+            Poslovna ekonomija, <br><br>s dva usmjerenja:<br>
+            Međunarodna trgovina,<br>
+            Turizam.<br><br>
+U suradnji sa Sveučilištem u Rijeci izvodi se i sveučilišni poslijediplomski doktorski studij "Mediji i izdavaštvo".
+
+U planu je uvođenje novih studija te u srednjoročnom razdoblju i podizanje postojećih stručnih studija na sveučilišnu razinu.</p>
+        
+    </div>
+    <div data-role="footer" data-theme="a" data-position="fixed">
+                <h2>Sjever rocks!</h2>
+    </div>
+</div>
+        
+<div data-role="page" id="page3" data-theme="a">
+            <div data-role="header" data-theme="a" data-position="fixed">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="a"></a><h3>Sjeveroljubac</h3>
+            </div>
+    
+    <div data-role="content"  data-theme="a" id ="postlist3">
+        <center><h2>Vodič za studente</h2></center>
+        <center><strong>Pogledajte brošuru i upoznajte se sa Sveučilištem Sjever</strong></center>
+        <a href="#" data-role="button" data-theme="c" onclick="window.open('http://docs.google.com/viewer?url=http://www.unin.hr/wp-content/uploads/Bro%C5%A1ura-Studiranje-na-Sjeveru.pdf', '_blank', 'location=no');">Brošura</a> 
+        <br><br><br><br><br>
+    </div>
+    
+    <div data-role="footer" data-theme="a" data-position="fixed">
+                <h2>Sjever rocks!</h2>
+    </div>
+</div>
+  
+<div data-role="page" id="page4" data-theme="a">
+            <div data-role="header" data-theme="a" data-position="fixed">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="a"></a><h3>Sjeveroljubac</h3>
+            </div>
+    <div data-role="content"  data-theme="a" id ="postlist4">
+        <center><h2>Lokacija</h2></center>
+        <strong>Sveučilišni centar Varaždin</strong>
+           <p>104. brigade 3<br>
+              42000 Varaždin<br>
+              E-mail: tajnistvo.vz@unin.hr<br>
+              <a href="Sc_vz.html" data-ajax="false" style=" text-decoration: none;">Kako do nas?</a></p><br>
+           
+        <strong>Sveučilišni centar Koprivnica</strong>
+           <p>Trg dr. Žarka Dolinara 1<br>
+              48000 Koprivnica<br>
+              E-mail: tajnistvo.kc@unin.hr<br>
+              <a href="Sc_kc.html" data-ajax="false" style=" text-decoration: none;">Kako do nas?</a></p><br>           
+    </div>
+    <div data-role="footer" data-theme="a" data-position="fixed">
+                <h2>Sjever rocks!</h2>
+    </div>
+</div>
+        
+<div data-role="page" id="page5" data-theme="a">
+            <div data-role="header" data-theme="a" data-position="fixed">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="a"></a><h3>Sjeveroljubac</h3>
+            </div>
+    <div data-role="content"  data-theme="a" id ="postlist5"></div>
+    <div data-role="footer" data-theme="a" data-position="fixed">
+                <h2>Sjever rocks!</h2>
+    </div>
+</div>
+    
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>

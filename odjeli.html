@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="format-detection" content="telephone=no">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        
+        <script type="text/javascript" src="jquery/jquery/jquery.js"></script>
+        <script type="text/javascript" src="jquery/jquery_mobile/jquery.mobile-1.4.5.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="css/index.css">
+        <link rel="stylesheet" type="text/css" href="css/teme.min.css">
+        <link rel="stylesheet" type="text/css" href="css/structure.css">
+        <link rel="stylesheet" type="text/css" href="css/jquery.mobile.icons.min.css">
+        <link rel="stylesheet" type="text/css" href="css/jqm-icon-pack-fa.css">
+        
+        <title>Odjeli</title>
+        
+        <script type="text/javascript">
+            function hideAddressBar(){
+  if(document.documentElement.scrollHeight<window.outerHeight/window.devicePixelRatio)
+    document.documentElement.style.height=(window.outerHeight/window.devicePixelRatio)+'px';
+  setTimeout(window.scrollTo(1,1),0);
+}
+window.addEventListener("load",function(){hideAddressBar();});
+window.addEventListener("orientationchange",function(){hideAddressBar();});
+        
+        $(window).on('pageinit' , function(event){
+            
+            $("#swipelist li").each(function(index){
+              
+              var elementId = $(this).attr("id");
+              elementId = '#' + elementId; 
+              
+              $(function(){
+                 
+                 $(elementId).click (function (event){
+                        
+                        
+                        $.mobile.changePage( elementId, { transition: "flip"}); 
+                     
+                });
+             });
+          });
+       });
+       
+        $(document).on('pagebeforeshow', function () {
+            $(this).find('a[data-rel=back]').buttonMarkup({
+            iconpos: 'notext'
+    });
+    });</script>
+<style>
+        .ui-header .ui-title {
+  overflow: visible !important;
+  white-space: normal !important;
+}
+body{
+    text-transform: none;
+}
+img {
+    width: 100%;
+    
+}
+h3{
+    text-transform: uppercase;
+}
+h2{
+    text-align: center;
+}
+#pbol{
+    font-weight: bold;
+}
+</style>
+
+    </head>
+    <body onload="hideAddressBar()">
+        <div data-role="page" id="odjeli" data-theme="b"><!--početak odjeli-->
+                <div id="pok" style=" text-shadow: none; margin-left: 5px;">
+                        <p>Prijavljeni ste kao:<strong id="ime"></strong><br>
+                        Želite li se odjaviti<a href="" id="eraser" style=" margin-left: 15px;" data-role="button" data-icon="eraser" data-iconpos="notext" data-inline="true">Odjavite se</a></p>
+                </div>    
+            <div data-role="header" data-theme="b" data-position="fixed">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="b"></a><h3>Sjeveroljubac</h3>
+                <div style=" float: right; margin-top: -45.5px; margin-right: -5px;">
+                    <a href="index.html" style=" float: right;" data-role="button" data-inline="true" data-icon="home" data-iconpos="notext" rel="external">&nbsp;</a>
+                    <a href="#pokazi" id="log" style=" float: end;" data-role="button" data-inline="true" data-icon="lock" data-iconpos="notext" rel="external">&nbsp;</a>
+                    <script>
+                        $("#pok").hide();
+                        $('#log').click( function() {
+                            $("#pok").slideToggle( "slow" );
+                            $("#ime").html(localStorage.getItem('usrname'));            
+                    });
+                    $('#eraser').click( function() {
+                    localStorage.removeItem('usrname');
+                    localStorage.removeItem('pass');
+                    localStorage.removeItem('chkbx');
+                    location.href="index.html";
+                    return false;
+                    });
+                    </script>
+                </div>
+            </div>
+            <div data-role="content" data-theme="b">
+                <p>Preddiplomski stručni studij:</p>
+                <ul data-role="listview" data-inset="true" id="swipelist">
+                    <li id="page1"><a href="">Elektrotehnika</a></li>
+                    <li id="page2"><a href="">Multimedija, oblikovanje i primjena</a></li>
+                    <li id="page3"><a href="">Proizvodno strojarstvo</a></li>
+                    <li id="page4"><a href="">Graditeljstvo</a></li>
+                    <li id="page5"><a href="">Logistika</a></li>
+                    <li id="page6"><a href="">Sestrinstvo</a></li>
+                    <li id="page7"><a href="">Novinarstvo</a></li>
+                    <li id="page8"><a href="">Medijski dizajn</a></li>
+                    <li id="page9"><a href="">Poslovanje i menadžment u medijima</a></li>
+                </ul><br>
+                <p>Sveučilišni studij:</p>
+                <ul data-role="listview" data-inset="true" id="swipelist">
+                    <li id="page10"><a href="">Poslovna ekonomija</a></li>
+                    <li id="page11"><a href="">Odnosi s javnostima</a></li>
+                </ul>
+            </div>
+            <div data-role="footer" data-theme="c" data-position="fixed">
+                <div data-role="navbar">
+		<ul>
+                    <li id="page1"><a href="odjeli.html" data-icon="th" data-ajax="false" class="ui-btn-active ui-state-persist">Odjeli</a></li>
+                    <li id="page2"><a href="profesori.html" data-icon="list" data-ajax="false">Profesori</a></li>
+                    <li id="page3"><a href="rss.html" data-icon="rss" data-ajax="false">RSS feed</a></li> 
+		</ul>
+                </div>
+            </div>
+            
+        </div><!--kraj odjeli-->
+        
+        
+        <div data-role="page" id="page1" data-theme="c"><!--početak page1-->
+            
+            <div data-role="header" data-position="fixed" data-theme="b">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="b"></a><h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content">
+                <h2>Odjel za elektrotehniku</h2>
+                <img src="img/ethnic.jpg"/>
+                <a href="http://www.unin.hr/category/et/" data-role="button" data-theme="d" data-iconpos="right" data-icon="info">Obavijesti</a>
+                <a href="https://login.aaiedu.hr/sso/module.php/core/loginuserpass.php?AuthState=_677462ef18525c8e8cd10c901aa888e40fd7c1c6ff%3Ahttps%3A%2F%2Flogin.aaiedu.hr%2Fsso%2Fsaml2%2Fidp%2FSSOService.php%3Fspentityid%3Dgoogle.com%252Fa%252Funin.hr%26cookieTime%3D1438178255%26RelayState%3Dhttps%253A%252F%252Fwww.google.com%252Fa%252Funin.hr%252FServiceLogin%253Fservice%253Dmail%2526passive%253Dtrue%2526rm%253Dfalse%2526continue%253Dhttps%25253A%25252F%25252Fmail.google.com%25252Fa%25252Funin.hr%25252F%2526ss%253D1%2526ltmpl%253Ddefault%2526ltmplcache%253D2%2526emr%253D1" data-role="button" data-theme="d" data-iconpos="right" data-icon="mail">Mail</a>
+                <a href="https://moodle.vz.unin.hr/moodle/login/index.php" data-role="button" data-theme="d" data-iconpos="right" data-icon="book">Moodle</a>
+                <a href="https://www.isvu.hr/studomat/prijava?site_preference=mobile" data-role="button" data-theme="d" data-iconpos="right" data-icon="pencil">Studomat</a>
+                <ul id="todos"></ul>
+                <center><strong>Želite li kreirati vlastite gumb poveznice?<br>Kliknite na gumb</strong></center>
+                <a href="#dialog1" data-role="button" data-theme="d">Stvori</a>
+            </div>
+            <div data-role="footer" data-theme="b" data-position="fixed">
+                <div data-role="navbar">
+		<ul>
+                    <li id="page1"><a href="odjeli.html" data-icon="th" data-ajax="false" class="ui-btn-active ui-state-persist">Odjeli</a></li>
+                    <li id="page2"><a href="profesori.html" data-icon="list" data-ajax="false">Profesori</a></li>
+                    <li id="page3"><a href="rss.html" data-icon="rss" data-ajax="false">RSS feed</a></li> 
+		</ul>
+	</div>
+    </div>
+        </div><!--kraj page1-->
+        
+        <div data-role="dialog" id="dialog1" data-theme="d" ><!--početak dialog-->
+            
+            <div data-role="header" data-add-back-btn="true" data-theme="c">
+                <h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content" id="bbb" data-theme="c">
+                       
+  <form id="form" action="#" method="POST">
+  <label for="select-choice-1" class="select">Zalijepite ili upišite poveznicu</label>
+  <input id="description" name="description" type="text" />
+  <label for="select-choice-1" class="select">Upišite naziv</label>
+  <input id="naziv" name="naziv" type="text" />
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite boju gumba</label>
+   <select name="select-choice-1" id="select-choice-1">
+      <option id="a" value="a">Plava</option>
+      <option id="b" value="b">Crvena</option>
+      <option id="c" value="c">Siva</option>
+      <option id="d" value="d">Crna</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite ikonu</label>
+   <select name="select-choice-1" id="select-choice-1-1">
+      <option value="facebook">Facebook</option>
+      <option value="book">Knjiga</option>
+      <option value="info">Info</option>
+      <option value="archive">Arhiva</option>
+      <option value="calendar">Kalendar</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite poziciju ikone</label>
+   <select name="select-choice-1" id="select-choice-1-1-1">
+      <option value="left">Lijevo</option>
+      <option value="right">Desno</option>
+      <option value="top">Gore</option>
+      <option value="bottom">Dolje</option>
+   </select>
+</div>
+  
+  
+  <input id="add" type="submit" value="Dodaj" />
+  <button id="clear">Obriši</button>
+  
+  </form>
+  <ul id="todos"></ul>
+  <script>
+      $('#add').click( function() {
+   var Description = $('#description').val();
+   var naziv = $('#naziv').val();
+   var tema = $('#select-choice-1').val();
+   var icon = $('#select-choice-1-1').val();
+   var poz = $('#select-choice-1-1-1').val();
+  if($("#description").val() === '') {
+  alert("Niste unijeli sve podatke!");
+    return false;
+   }
+   $('#todos').prepend('<a href="'+ Description +' " data-role="button" style="margin-left: -40px;"data-theme="'+ tema +'" data-iconpos="'+ poz +'" data-icon="'+icon+'">' + naziv + '<a>');
+   $('#form')[0].reset();
+   var todos = $('#todos').html();
+   localStorage.setItem('todos', todos);
+   location.reload();
+   return false;
+});
+
+if(localStorage.getItem('todos')) {
+$('#todos').html(localStorage.getItem('todos'));
+}
+
+$('#clear').click( function() {
+localStorage.removeItem('todos');
+location.reload();
+return false;
+});
+  </script>
+  
+            </div>
+            <div data-role="footer" data-theme="c" data-position="fixed">
+                <h2>Sjever rocks!</h2>
+            </div>
+        </div>
+        <div data-role="page" id="page2" data-theme="c"><!--početak page2-->
+            
+            <div data-role="header" data-position="fixed" data-theme="b">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="b"></a><h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content">
+                <h2>Odjel za multimediju, oblikovanje i primjenu</h2>
+                <img src="img/mop.jpg"/>
+                <a href="http://www.unin.hr/category/mop/" data-role="button" data-theme="d" data-iconpos="right" data-icon="info">Obavijesti</a>
+                <a href="https://login.aaiedu.hr/sso/module.php/core/loginuserpass.php?AuthState=_677462ef18525c8e8cd10c901aa888e40fd7c1c6ff%3Ahttps%3A%2F%2Flogin.aaiedu.hr%2Fsso%2Fsaml2%2Fidp%2FSSOService.php%3Fspentityid%3Dgoogle.com%252Fa%252Funin.hr%26cookieTime%3D1438178255%26RelayState%3Dhttps%253A%252F%252Fwww.google.com%252Fa%252Funin.hr%252FServiceLogin%253Fservice%253Dmail%2526passive%253Dtrue%2526rm%253Dfalse%2526continue%253Dhttps%25253A%25252F%25252Fmail.google.com%25252Fa%25252Funin.hr%25252F%2526ss%253D1%2526ltmpl%253Ddefault%2526ltmplcache%253D2%2526emr%253D1" data-role="button" data-theme="d" data-iconpos="right" data-icon="mail">Mail</a>
+                <a href="https://moodle.vz.unin.hr/moodle/login/index.php" data-role="button" data-theme="d" data-iconpos="right" data-icon="book">Moodle</a>
+                <a href="https://www.isvu.hr/studomat/prijava?site_preference=mobile" data-role="button" data-theme="d" data-iconpos="right" data-icon="pencil">Studomat</a>
+                <ul id="todos2"></ul>
+                <center><strong>Želite li kreirati vlastite gumb poveznice?<br>Kliknite na gumb</strong></center>
+                <a href="#dialog2" data-role="button" data-theme="d">Stvori</a>
+            </div>
+            <div data-role="footer" data-theme="b" data-position="fixed">
+                <div data-role="navbar">
+		<ul>
+                    <li id="page1"><a href="odjeli.html" data-icon="th" data-ajax="false" class="ui-btn-active ui-state-persist">Odjeli</a></li>
+                    <li id="page2"><a href="profesori.html" data-icon="list" data-ajax="false">Profesori</a></li>
+                    <li id="page3"><a href="rss.html" data-icon="rss" data-ajax="false">RSS feed</a></li> 
+		</ul>
+	</div>
+    </div>
+        </div><!--kraj page2-->
+                 <div data-role="dialog" id="dialog2" data-theme="d" ><!--početak dialog-->
+            
+            <div data-role="header" data-add-back-btn="true" data-theme="c">
+                <h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content" id="bbb" data-theme="c">
+                       
+  <form id="form2" action="#" method="POST">
+  <label for="select-choice-1" class="select">Zalijepite ili upišite poveznicu</label>
+  <input id="description2" name="description" type="text" />
+  <label for="select-choice-1" class="select">Upišite naziv</label>
+  <input id="naziv2" name="naziv" type="text" />
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite boju gumba</label>
+   <select name="select-choice-1" id="select-choice-1">
+      <option id="a" value="a">Plava</option>
+      <option id="b" value="b">Crvena</option>
+      <option id="c" value="c">Siva</option>
+      <option id="d" value="d">Crna</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite ikonu</label>
+   <select name="select-choice-1" id="select-choice-1-1">
+      <option value="facebook">Facebook</option>
+      <option value="book">Knjiga</option>
+      <option value="info">Info</option>
+      <option value="archive">Arhiva</option>
+      <option value="calendar">Kalendar</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite poziciju ikone</label>
+   <select name="select-choice-1" id="select-choice-1-1-1">
+      <option value="left">Lijevo</option>
+      <option value="right">Desno</option>
+      <option value="top">Gore</option>
+      <option value="bottom">Dolje</option>
+   </select>
+</div>
+  
+  
+  <input id="add2" type="submit" value="Dodaj" />
+  <button id="clear2">Obriši</button>
+  </form>
+  <ul id="todos"></ul>
+  <script>
+      $('#add2').click( function() {
+   var Description2 = $('#description2').val();
+   var naziv2 = $('#naziv2').val();
+   var tema2 = $('#select-choice-1').val();
+   var icon2 = $('#select-choice-1-1').val();
+   var poz2 = $('#select-choice-1-1-1').val();
+  if($("#description2").val() === '') {
+    alert("Niste unijeli sve podatke!");
+    return false;
+   }
+   $('#todos2').prepend('<a href="'+ Description2 +' " data-role="button" style="margin-left: -40px;"data-theme="'+ tema2 +'" data-iconpos="'+ poz2 +'" data-icon="'+icon2+'">' + naziv2 + '<a>');
+   $('#form2')[0].reset();
+   var todos = $('#todos2').html();
+   localStorage.setItem('todos2', todos);
+   location.reload();
+   return false;
+});
+
+if(localStorage.getItem('todos2')) {
+$('#todos2').html(localStorage.getItem('todos2'));
+}
+
+$('#clear2').click( function() {
+localStorage.removeItem('todos2');
+location.reload();
+return false;
+});
+  </script>
+  
+            </div>
+            <div data-role="footer" data-theme="c" data-position="fixed">
+                <h2>Sjever rocks!</h2>
+            </div>
+        </div>           
+        
+        <div data-role="page" id="page3" data-theme="c"><!--početak page3-->
+            
+            <div data-role="header" data-position="fixed" data-theme="b">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="b"></a><h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content">
+                <h2>Odjel za proizvodno strojarstvo</h2>
+                <img src="img/ps.jpg"/>
+                <a href="http://www.unin.hr/category/ps/" data-role="button" data-theme="d" data-iconpos="right" data-icon="info">Obavijesti</a>
+                <a href="https://login.aaiedu.hr/sso/module.php/core/loginuserpass.php?AuthState=_677462ef18525c8e8cd10c901aa888e40fd7c1c6ff%3Ahttps%3A%2F%2Flogin.aaiedu.hr%2Fsso%2Fsaml2%2Fidp%2FSSOService.php%3Fspentityid%3Dgoogle.com%252Fa%252Funin.hr%26cookieTime%3D1438178255%26RelayState%3Dhttps%253A%252F%252Fwww.google.com%252Fa%252Funin.hr%252FServiceLogin%253Fservice%253Dmail%2526passive%253Dtrue%2526rm%253Dfalse%2526continue%253Dhttps%25253A%25252F%25252Fmail.google.com%25252Fa%25252Funin.hr%25252F%2526ss%253D1%2526ltmpl%253Ddefault%2526ltmplcache%253D2%2526emr%253D1" data-role="button" data-theme="d" data-iconpos="right" data-icon="mail">Mail</a>
+                <a href="https://moodle.vz.unin.hr/moodle/login/index.php" data-role="button" data-theme="d" data-iconpos="right" data-icon="book">Moodle</a>
+                <a href="https://www.isvu.hr/studomat/prijava?site_preference=mobile" data-role="button" data-theme="d" data-iconpos="right" data-icon="pencil">Studomat</a>
+                <ul id="todos3"></ul>
+                <center><strong>Želite li kreirati vlastite gumb poveznice?<br>Kliknite na gumb</strong></center>
+                <a href="#dialog3" data-role="button" data-theme="d">Stvori</a>
+            </div>
+            <div data-role="footer" data-theme="b" data-position="fixed">
+                <div data-role="navbar">
+		<ul>
+                    <li id="page1"><a href="odjeli.html" data-icon="th" data-ajax="false" class="ui-btn-active ui-state-persist">Odjeli</a></li>
+                    <li id="page2"><a href="profesori.html" data-icon="list" data-ajax="false">Profesori</a></li>
+                    <li id="page3"><a href="rss.html" data-icon="rss" data-ajax="false">RSS feed</a></li> 
+		</ul>
+	</div>
+    </div>
+         </div><!--kraj page3-->
+                          <div data-role="dialog" id="dialog3" data-theme="d" ><!--početak dialog-->
+            
+            <div data-role="header" data-add-back-btn="true" data-theme="c">
+                <h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content" id="bbb" data-theme="c">
+                       
+  <form id="form3" action="#" method="POST">
+  <label for="select-choice-1" class="select">Zalijepite ili upišite poveznicu</label>
+  <input id="description3" name="description" type="text" />
+  <label for="select-choice-1" class="select">Upišite naziv</label>
+  <input id="naziv3" name="naziv" type="text" />
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite boju gumba</label>
+   <select name="select-choice-1" id="select-choice-1">
+      <option id="a" value="a">Plava</option>
+      <option id="b" value="b">Crvena</option>
+      <option id="c" value="c">Siva</option>
+      <option id="d" value="c">Crna</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite ikonu</label>
+   <select name="select-choice-1" id="select-choice-1-1">
+      <option value="facebook">Facebook</option>
+      <option value="book">Knjiga</option>
+      <option value="info">Info</option>
+      <option value="archive">Arhiva</option>
+      <option value="calendar">Kalendar</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite poziciju ikone</label>
+   <select name="select-choice-1" id="select-choice-1-1-1">
+      <option value="left">Lijevo</option>
+      <option value="right">Desno</option>
+      <option value="top">Gore</option>
+      <option value="bottom">Dolje</option>
+   </select>
+</div>
+  <input id="add3" type="submit" value="Dodaj" />
+  <button id="clear3">Obriši</button>
+  <ul id="todos"></ul>
+  </form>
+  <script>
+      $('#add3').click( function() {
+   var Description3 = $('#description3').val();
+   var naziv3 = $('#naziv3').val();
+   var tema3 = $('#select-choice-1').val();
+   var icon3 = $('#select-choice-1-1').val();
+   var poz3 = $('#select-choice-1-1-1').val();
+  if($("#description3").val() === '') {
+    alert("Niste unijeli sve podatke!");
+    return false;
+   }
+   $('#todos3').prepend('<a href="'+ Description3 +' " data-role="button" style="margin-left: -40px;"data-theme="'+ tema3 +'" data-iconpos="'+ poz3 +'" data-icon="'+icon3+'">' + naziv3 + '<a>');
+   $('#form3')[0].reset();
+   var todos = $('#todos3').html();
+   console.log('todos3');
+   localStorage.setItem('todos3', todos);
+   return false;
+});
+
+if(localStorage.getItem('todos3')) {
+$('#todos3').html(localStorage.getItem('todos3'));
+}
+
+$('#clear3').click( function() {
+localStorage.removeItem('todos3');
+location.reload();
+return false;
+});
+  </script>
+  
+            </div>
+            <div data-role="footer" data-theme="c" data-position="fixed">
+                <h2>Sjever rocks!</h2>
+            </div>
+                          </div>
+        
+             
+         <div data-role="page" id="page4" data-theme="c"><!--početak page4-->
+             
+            <div data-role="header" data-position="fixed" data-theme="b">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="b"></a><h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content">
+                <h2>Odjel za graditeljstvo</h2>
+                <img src="img/gr.jpg"/>
+                <a href="http://www.unin.hr/category/gr/" data-role="button" data-theme="d" data-iconpos="right" data-icon="info">Obavijesti</a>
+                <a href="https://login.aaiedu.hr/sso/module.php/core/loginuserpass.php?AuthState=_677462ef18525c8e8cd10c901aa888e40fd7c1c6ff%3Ahttps%3A%2F%2Flogin.aaiedu.hr%2Fsso%2Fsaml2%2Fidp%2FSSOService.php%3Fspentityid%3Dgoogle.com%252Fa%252Funin.hr%26cookieTime%3D1438178255%26RelayState%3Dhttps%253A%252F%252Fwww.google.com%252Fa%252Funin.hr%252FServiceLogin%253Fservice%253Dmail%2526passive%253Dtrue%2526rm%253Dfalse%2526continue%253Dhttps%25253A%25252F%25252Fmail.google.com%25252Fa%25252Funin.hr%25252F%2526ss%253D1%2526ltmpl%253Ddefault%2526ltmplcache%253D2%2526emr%253D1" data-role="button" data-theme="d" data-iconpos="right" data-icon="mail">Mail</a>
+                <a href="https://moodle.vz.unin.hr/moodle/login/index.php" data-role="button" data-theme="d" data-iconpos="right" data-icon="book">Moodle</a>
+                <a href="https://www.isvu.hr/studomat/prijava?site_preference=mobile" data-role="button" data-theme="d" data-iconpos="right" data-icon="pencil">Studomat</a>
+                <ul id="todos4"></ul>
+                <center><strong>Želite li kreirati vlastite gumb poveznice?<br>Kliknite na gumb</strong></center>
+                <a href="#dialog4" data-role="button" data-theme="d">Stvori</a>
+            </div>
+            <div data-role="footer" data-theme="b" data-position="fixed">
+                <div data-role="navbar">
+		<ul>
+                    <li id="page1"><a href="odjeli.html" data-icon="th" data-ajax="false" class="ui-btn-active ui-state-persist">Odjeli</a></li>
+                    <li id="page2"><a href="profesori.html" data-icon="list" data-ajax="false">Profesori</a></li>
+                    <li id="page3"><a href="rss.html" data-icon="rss" data-ajax="false">RSS feed</a></li> 
+		</ul>
+	</div>
+    </div> 
+         </div><!--kraj page4-->
+         <div data-role="dialog" id="dialog4" data-theme="d" ><!--početak dialog-->
+            
+            <div data-role="header" data-add-back-btn="true" data-theme="c">
+                <h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content" id="bbb" data-theme="c">
+                       
+  <form id="form4" action="#" method="POST">
+  <label for="select-choice-1" class="select">Zalijepite ili upišite poveznicu</label>
+  <input id="description4" name="description" type="text" />
+  <label for="select-choice-1" class="select">Upišite naziv</label>
+  <input id="naziv4" name="naziv" type="text" />
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite boju gumba</label>
+   <select name="select-choice-1" id="select-choice-1">
+      <option id="a" value="a">Plava</option>
+      <option id="b" value="b">Crvena</option>
+      <option id="c" value="c">Siva</option>
+      <option id="d" value="d">Crna</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite ikonu</label>
+   <select name="select-choice-1" id="select-choice-1-1">
+      <option value="facebook">Facebook</option>
+      <option value="book">Knjiga</option>
+      <option value="info">Info</option>
+      <option value="archive">Arhiva</option>
+      <option value="calendar">Kalendar</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite poziciju ikone</label>
+   <select name="select-choice-1" id="select-choice-1-1-1">
+      <option value="left">Lijevo</option>
+      <option value="right">Desno</option>
+      <option value="top">Gore</option>
+      <option value="bottom">Dolje</option>
+   </select>
+</div>
+  
+  
+  <input id="add4" type="submit" value="Dodaj" />
+  <button id="clear4">Obriši</button>
+  </form>
+  <ul id="todos"></ul>
+  <script>
+      $('#add4').click( function() {
+   var Description4 = $('#description4').val();
+   var naziv4 = $('#naziv4').val();
+   var tema4 = $('#select-choice-1').val();
+   var icon4 = $('#select-choice-1-1').val();
+   var poz4 = $('#select-choice-1-1-1').val();
+  if($("#description4").val() === '') {
+    alert("Niste unijeli sve podatke!");
+    return false;
+   }
+   $('#todos4').prepend('<a href="'+ Description4 +' " data-role="button" style="margin-left: -40px;"data-theme="'+ tema4 +'" data-iconpos="'+ poz4 +'" data-icon="'+icon4+'">' + naziv4 + '<a>');
+   $('#form4')[0].reset();
+   var todos = $('#todos4').html();
+   localStorage.setItem('todos4', todos);
+   location.reload();
+   return false;
+});
+
+if(localStorage.getItem('todos4')) {
+$('#todos4').html(localStorage.getItem('todos4'));
+}
+
+$('#clear4').click( function() {
+localStorage.removeItem('todos4');
+location.reload();
+return false;
+});
+  </script>
+  
+            </div>
+            <div data-role="footer" data-theme="c" data-position="fixed">
+                <h2>Sjever rocks!</h2>
+            </div>
+        </div> 
+             
+         <div data-role="page" id="page5" data-theme="c"><!-- početak page5-->
+             
+            <div data-role="header" data-position="fixed" data-theme="b">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="b"></a><h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content">
+                <h2>Odjel za tehničku i gospodarsku logistiku</h2>
+                <img src="img/tgl.jpg"/>
+                <a href="http://www.unin.hr/category/tgl/" data-role="button" data-theme="d" data-iconpos="right" data-icon="info">Obavijesti</a>
+                <a href="https://login.aaiedu.hr/sso/module.php/core/loginuserpass.php?AuthState=_677462ef18525c8e8cd10c901aa888e40fd7c1c6ff%3Ahttps%3A%2F%2Flogin.aaiedu.hr%2Fsso%2Fsaml2%2Fidp%2FSSOService.php%3Fspentityid%3Dgoogle.com%252Fa%252Funin.hr%26cookieTime%3D1438178255%26RelayState%3Dhttps%253A%252F%252Fwww.google.com%252Fa%252Funin.hr%252FServiceLogin%253Fservice%253Dmail%2526passive%253Dtrue%2526rm%253Dfalse%2526continue%253Dhttps%25253A%25252F%25252Fmail.google.com%25252Fa%25252Funin.hr%25252F%2526ss%253D1%2526ltmpl%253Ddefault%2526ltmplcache%253D2%2526emr%253D1" data-role="button" data-theme="d" data-iconpos="right" data-icon="mail">Mail</a>
+                <a href="https://moodle.vz.unin.hr/moodle/login/index.php" data-role="button" data-theme="d" data-iconpos="right" data-icon="book">Moodle</a>
+                <a href="https://www.isvu.hr/studomat/prijava?site_preference=mobile" data-role="button" data-theme="d" data-iconpos="right" data-icon="pencil">Studomat</a>
+                <ul id="todos5"></ul>
+                <center><strong>Želite li kreirati vlastite gumb poveznice?<br>Kliknite na gumb</strong></center>
+                <a href="#dialog5" data-role="button" data-theme="d">Stvori</a>
+            </div>
+            <div data-role="footer" data-theme="b" data-position="fixed">
+                <div data-role="navbar">
+		<ul>
+                    <li id="page1"><a href="odjeli.html" data-icon="th" data-ajax="false" class="ui-btn-active ui-state-persist">Odjeli</a></li>
+                    <li id="page2"><a href="profesori.html" data-icon="list" data-ajax="false">Profesori</a></li>
+                    <li id="page3"><a href="rss.html" data-icon="rss" data-ajax="false">RSS feed</a></li> 
+		</ul>
+	</div>
+    </div>    
+        </div><!--kraj page5-->
+        <div data-role="dialog" id="dialog5" data-theme="d" ><!--početak dialog-->
+            
+            <div data-role="header" data-add-back-btn="true" data-theme="c">
+                <h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content" id="bbb" data-theme="c">
+                       
+  <form id="form5" action="#" method="POST">
+  <label for="select-choice-1" class="select">Zalijepite ili upišite poveznicu</label>
+  <input id="description5" name="description" type="text" />
+  <label for="select-choice-1" class="select">Upišite naziv</label>
+  <input id="naziv5" name="naziv" type="text" />
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite boju gumba</label>
+   <select name="select-choice-1" id="select-choice-1">
+      <option id="a" value="a">Plava</option>
+      <option id="b" value="b">Crvena</option>
+      <option id="c" value="c">Siva</option>
+      <option id="d" value="d">Crna</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite ikonu</label>
+   <select name="select-choice-1" id="select-choice-1-1">
+      <option value="facebook">Facebook</option>
+      <option value="book">Knjiga</option>
+      <option value="info">Info</option>
+      <option value="archive">Arhiva</option>
+      <option value="calendar">Kalendar</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite poziciju ikone</label>
+   <select name="select-choice-1" id="select-choice-1-1-1">
+      <option value="left">Lijevo</option>
+      <option value="right">Desno</option>
+      <option value="top">Gore</option>
+      <option value="bottom">Dolje</option>
+   </select>
+</div>
+  
+  
+  <input id="add5" type="submit" value="Dodaj" />
+  <button id="clear5">Obriši</button>
+  </form>
+  <ul id="todos"></ul>
+  <script>
+      $('#add5').click( function() {
+   var Description5 = $('#description5').val();
+   var naziv5 = $('#naziv5').val();
+   var tema5 = $('#select-choice-1').val();
+   var icon5 = $('#select-choice-1-1').val();
+   var poz5 = $('#select-choice-1-1-1').val();
+  if($("#description5").val() === '') {
+    alert("Niste unijeli sve podatke!");
+    return false;
+   }
+   $('#todos5').prepend('<a href="'+ Description5 +' " data-role="button" style="margin-left: -40px;"data-theme="'+ tema5 +'" data-iconpos="'+ poz5 +'" data-icon="'+icon5+'">' + naziv5 + '<a>');
+   $('#form5')[0].reset();
+   var todos = $('#todos5').html();
+   localStorage.setItem('todos5', todos);
+   location.reload();
+   return false;
+});
+
+if(localStorage.getItem('todos5')) {
+$('#todos5').html(localStorage.getItem('todos5'));
+}
+
+$('#clear5').click( function() {
+localStorage.removeItem('todos5');
+location.reload();
+return false;
+});
+  </script>
+  
+            </div>
+            <div data-role="footer" data-theme="c" data-position="fixed">
+                <h2>Sjever rocks!</h2>
+            </div>
+        </div> 
+        
+        <div data-role="page" id="page6" data-theme="c"><!--početak page6-->
+            
+            <div data-role="header" data-position="fixed" data-theme="b">
+               <a href="#" data-rel="back" data-icon="arrow-l" data-theme="b"></a> <h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content">
+                <h2>Odjel za biomedicinske znanosti</h2>
+                <img src="img/ses.jpg"/>
+                <a href="http://www.unin.hr/category/ses/" data-role="button" data-theme="d" data-iconpos="right" data-icon="info">Obavijesti</a>
+                <a href="https://login.aaiedu.hr/sso/module.php/core/loginuserpass.php?AuthState=_677462ef18525c8e8cd10c901aa888e40fd7c1c6ff%3Ahttps%3A%2F%2Flogin.aaiedu.hr%2Fsso%2Fsaml2%2Fidp%2FSSOService.php%3Fspentityid%3Dgoogle.com%252Fa%252Funin.hr%26cookieTime%3D1438178255%26RelayState%3Dhttps%253A%252F%252Fwww.google.com%252Fa%252Funin.hr%252FServiceLogin%253Fservice%253Dmail%2526passive%253Dtrue%2526rm%253Dfalse%2526continue%253Dhttps%25253A%25252F%25252Fmail.google.com%25252Fa%25252Funin.hr%25252F%2526ss%253D1%2526ltmpl%253Ddefault%2526ltmplcache%253D2%2526emr%253D1" data-role="button" data-theme="d" data-iconpos="right" data-icon="mail">Mail</a>
+                <a href="https://moodle.vz.unin.hr/moodle/login/index.php" data-role="button" data-theme="d" data-iconpos="right" data-icon="book">Moodle</a>
+                <a href="https://www.isvu.hr/studomat/prijava?site_preference=mobile" data-role="button" data-theme="d" data-iconpos="right" data-icon="pencil">Studomat</a>
+                <ul id="todos6"></ul>
+                <center><strong>Želite li kreirati vlastite gumb poveznice?<br>Kliknite na gumb</strong></center>
+                <a href="#dialog6" data-role="button" data-theme="d">Stvori</a>
+            </div>
+            <div data-role="footer" data-theme="b" data-position="fixed">
+                <div data-role="navbar">
+		<ul>
+                    <li id="page1"><a href="odjeli.html" data-icon="th" data-ajax="false" class="ui-btn-active ui-state-persist">Odjeli</a></li>
+                    <li id="page2"><a href="profesori.html" data-icon="list" data-ajax="false">Profesori</a></li>
+                    <li id="page3"><a href="rss.html" data-icon="rss" data-ajax="false">RSS feed</a></li> 
+		</ul>
+	</div>
+    </div>
+            
+        </div><!--kraj page6-->
+        <div data-role="dialog" id="dialog6" data-theme="d" ><!--početak dialog-->
+            
+            <div data-role="header" data-add-back-btn="true" data-theme="c">
+                <h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content" id="bbb" data-theme="c">
+                       
+  <form id="form6" action="#" method="POST">
+  <label for="select-choice-1" class="select">Zalijepite ili upišite poveznicu</label>
+  <input id="description6" name="description" type="text" />
+  <label for="select-choice-1" class="select">Upišite naziv</label>
+  <input id="naziv6" name="naziv" type="text" />
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite boju gumba</label>
+   <select name="select-choice-1" id="select-choice-1">
+      <option id="a" value="a">Plava</option>
+      <option id="b" value="b">Crvena</option>
+      <option id="c" value="c">Siva</option>
+      <option id="d" value="d">Crna</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite ikonu</label>
+   <select name="select-choice-1" id="select-choice-1-1">
+      <option value="facebook">Facebook</option>
+      <option value="book">Knjiga</option>
+      <option value="info">Info</option>
+      <option value="archive">Arhiva</option>
+      <option value="calendar">Kalendar</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite poziciju ikone</label>
+   <select name="select-choice-1" id="select-choice-1-1-1">
+      <option value="left">Lijevo</option>
+      <option value="right">Desno</option>
+      <option value="top">Gore</option>
+      <option value="bottom">Dolje</option>
+   </select>
+</div>
+  
+  
+  <input id="add6" type="submit" value="Dodaj" />
+  <button id="clear6">Obriši</button>
+  </form>
+  <ul id="todos"></ul>
+  <script>
+      $('#add6').click( function() {
+   var Description6 = $('#description6').val();
+   var naziv6 = $('#naziv6').val();
+   var tema6 = $('#select-choice-1').val();
+   var icon6 = $('#select-choice-1-1').val();
+   var poz6 = $('#select-choice-1-1-1').val();
+  if($("#description6").val() === '') {
+    alert("Niste unijeli sve podatke!");
+    return false;
+   }
+   $('#todos6').prepend('<a href="'+ Description6 +' " data-role="button" style="margin-left: -40px;"data-theme="'+ tema6 +'" data-iconpos="'+ poz6 +'" data-icon="'+icon6+'">' + naziv6 + '<a>');
+   $('#form6')[0].reset();
+   var todos = $('#todos6').html();
+   localStorage.setItem('todos6', todos);
+   location.reload();
+   return false;
+});
+
+if(localStorage.getItem('todos6')) {
+$('#todos6').html(localStorage.getItem('todos6'));
+}
+
+$('#clear6').click( function() {
+localStorage.removeItem('todos6');
+location.reload();
+return false;
+});
+  </script>
+  
+            </div>
+            <div data-role="footer" data-theme="c" data-position="fixed">
+                <h2>Sjever rocks!</h2>
+            </div>
+        </div> 
+        
+        <div data-role="page" id="page7" data-theme="c"><!--početak page7-->
+            
+            <div data-role="header" data-position="fixed" data-theme="b">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="b"></a><h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content">
+                <h2>Odjel za novinarstvo</h2>
+                <img src="img/nov.jpg"/>
+                <a href="http://www.unin.hr/category/nov/" data-role="button" data-theme="d" data-iconpos="right" data-icon="info">Obavijesti</a>
+                <a href="https://login.aaiedu.hr/sso/module.php/core/loginuserpass.php?AuthState=_677462ef18525c8e8cd10c901aa888e40fd7c1c6ff%3Ahttps%3A%2F%2Flogin.aaiedu.hr%2Fsso%2Fsaml2%2Fidp%2FSSOService.php%3Fspentityid%3Dgoogle.com%252Fa%252Funin.hr%26cookieTime%3D1438178255%26RelayState%3Dhttps%253A%252F%252Fwww.google.com%252Fa%252Funin.hr%252FServiceLogin%253Fservice%253Dmail%2526passive%253Dtrue%2526rm%253Dfalse%2526continue%253Dhttps%25253A%25252F%25252Fmail.google.com%25252Fa%25252Funin.hr%25252F%2526ss%253D1%2526ltmpl%253Ddefault%2526ltmplcache%253D2%2526emr%253D1" data-role="button" data-theme="d" data-iconpos="right" data-icon="mail">Mail</a>
+                <a href="https://moodle.kc.unin.hr/moodle/login/index.php" data-role="button" data-theme="d" data-iconpos="right" data-icon="book">Moodle</a>
+                <a href="https://www.isvu.hr/studomat/prijava?site_preference=mobile" data-role="button" data-theme="d" data-iconpos="right" data-icon="pencil">Studomat</a>
+                <ul id="todos7"></ul>
+                <center><strong>Želite li kreirati vlastite gumb poveznice?<br>Kliknite na gumb</strong></center>
+                <a href="#dialog7" data-role="button" data-theme="d">Stvori</a>
+            </div>
+            <div data-role="footer" data-theme="b" data-position="fixed">
+                <div data-role="navbar">
+		<ul>
+                    <li id="page1"><a href="odjeli.html" data-icon="th" data-ajax="false" class="ui-btn-active ui-state-persist">Odjeli</a></li>
+                    <li id="page2"><a href="profesori.html" data-icon="list" data-ajax="false">Profesori</a></li>
+                    <li id="page3"><a href="rss.html" data-icon="rss" data-ajax="false">RSS feed</a></li> 
+		</ul>
+	</div>
+    </div>
+        </div><!--kraj page7-->
+        <div data-role="dialog" id="dialog7" data-theme="d" ><!--početak dialog-->
+            
+            <div data-role="header" data-add-back-btn="true" data-theme="c">
+                <h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content" id="bbb" data-theme="c">
+                       
+  <form id="form7" action="#" method="POST">
+  <label for="select-choice-1" class="select">Zalijepite ili upišite poveznicu</label>
+  <input id="description7" name="description" type="text" />
+  <label for="select-choice-1" class="select">Upišite naziv</label>
+  <input id="naziv7" name="naziv" type="text" />
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite boju gumba</label>
+   <select name="select-choice-1" id="select-choice-1">
+      <option id="a" value="a">Plava</option>
+      <option id="b" value="b">Crvena</option>
+      <option id="c" value="c">Siva</option>
+      <option id="d" value="d">Crna</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite ikonu</label>
+   <select name="select-choice-1" id="select-choice-1-1">
+      <option value="facebook">Facebook</option>
+      <option value="book">Knjiga</option>
+      <option value="info">Info</option>
+      <option value="archive">Arhiva</option>
+      <option value="calendar">Kalendar</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite poziciju ikone</label>
+   <select name="select-choice-1" id="select-choice-1-1-1">
+      <option value="left">Lijevo</option>
+      <option value="right">Desno</option>
+      <option value="top">Gore</option>
+      <option value="bottom">Dolje</option>
+   </select>
+</div>
+  
+  
+  <input id="add7" type="submit" value="Dodaj" />
+  <button id="clear7">Obriši</button>
+  </form>
+  <ul id="todos"></ul>
+  <script>
+      $('#add7').click( function() {
+   var Description7 = $('#description7').val();
+   var naziv7 = $('#naziv7').val();
+   var tema7 = $('#select-choice-1').val();
+   var icon7 = $('#select-choice-1-1').val();
+   var poz7 = $('#select-choice-1-1-1').val();
+  if($("#description7").val() === '') {
+    alert("Niste unijeli sve podatke!");
+    return false;
+   }
+   $('#todos7').prepend('<a href="'+ Description7 +' " data-role="button" style="margin-left: -40px;"data-theme="'+ tema7 +'" data-iconpos="'+ poz7 +'" data-icon="'+icon7+'">' + naziv7 + '<a>');
+   $('#form7')[0].reset();
+   var todos = $('#todos7').html();
+   localStorage.setItem('todos7', todos);
+   location.reload();
+   return false;
+});
+
+if(localStorage.getItem('todos7')) {
+$('#todos7').html(localStorage.getItem('todos7'));
+}
+
+$('#clear7').click( function() {
+localStorage.removeItem('todos7');
+location.reload();
+return false;
+});
+  </script>
+  
+            </div>
+            <div data-role="footer" data-theme="c" data-position="fixed">
+                <h2>Sjever rocks!</h2>
+            </div>
+        </div> 
+        
+        <div data-role="page" id="page8" data-theme="c"><!--početak page8-->
+            
+            <div data-role="header" data-position="fixed" data-theme="b">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="b"></a><h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content">
+                <h2>Odjel za medijski dizajn</h2>
+                <img src="img/med.jpg"/>
+                <a href="http://www.unin.hr/category/med/" data-role="button" data-theme="d" data-iconpos="right" data-icon="info">Obavijesti</a>
+                <a href="https://login.aaiedu.hr/sso/module.php/core/loginuserpass.php?AuthState=_677462ef18525c8e8cd10c901aa888e40fd7c1c6ff%3Ahttps%3A%2F%2Flogin.aaiedu.hr%2Fsso%2Fsaml2%2Fidp%2FSSOService.php%3Fspentityid%3Dgoogle.com%252Fa%252Funin.hr%26cookieTime%3D1438178255%26RelayState%3Dhttps%253A%252F%252Fwww.google.com%252Fa%252Funin.hr%252FServiceLogin%253Fservice%253Dmail%2526passive%253Dtrue%2526rm%253Dfalse%2526continue%253Dhttps%25253A%25252F%25252Fmail.google.com%25252Fa%25252Funin.hr%25252F%2526ss%253D1%2526ltmpl%253Ddefault%2526ltmplcache%253D2%2526emr%253D1" data-role="button" data-theme="d" data-iconpos="right" data-icon="mail">Mail</a>
+                <a href="https://moodle.kc.unin.hr/moodle/login/index.php" data-role="button" data-theme="d" data-iconpos="right" data-icon="book">Moodle</a>
+                <a href="https://www.isvu.hr/studomat/prijava?site_preference=mobile" data-role="button" data-theme="d" data-iconpos="right" data-icon="pencil">Studomat</a>
+                <ul id="todos8"></ul>
+                <center><strong>Želite li kreirati vlastite gumb poveznice?<br>Kliknite na gumb</strong></center>
+                <a href="#dialog8" data-role="button" data-theme="d">Stvori</a>
+            </div>
+            <div data-role="footer" data-theme="b" data-position="fixed">
+                <div data-role="navbar">
+		<ul>
+                    <li id="page1"><a href="odjeli.html" data-icon="th" data-ajax="false" class="ui-btn-active ui-state-persist">Odjeli</a></li>
+                    <li id="page2"><a href="profesori.html" data-icon="list" data-ajax="false">Profesori</a></li>
+                    <li id="page3"><a href="rss.html" data-icon="rss" data-ajax="false">RSS feed</a></li> 
+		</ul>
+	</div>
+    </div>
+            
+        </div><!--kraj page8-->
+        <div data-role="dialog" id="dialog8" data-theme="d" ><!--početak dialog-->
+            
+            <div data-role="header" data-add-back-btn="true" data-theme="c">
+                <h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content" id="bbb" data-theme="c">
+                       
+  <form id="form8" action="#" method="POST">
+  <label for="select-choice-1" class="select">Zalijepite ili upišite poveznicu</label>
+  <input id="description8" name="description" type="text" />
+  <label for="select-choice-1" class="select">Upišite naziv</label>
+  <input id="naziv8" name="naziv" type="text" />
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite boju gumba</label>
+   <select name="select-choice-1" id="select-choice-1">
+      <option id="a" value="a">Plava</option>
+      <option id="b" value="b">Crvena</option>
+      <option id="c" value="c">Siva</option>
+      <option id="d" value="d">Crna</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite ikonu</label>
+   <select name="select-choice-1" id="select-choice-1-1">
+      <option value="facebook">Facebook</option>
+      <option value="book">Knjiga</option>
+      <option value="info">Info</option>
+      <option value="archive">Arhiva</option>
+      <option value="calendar">Kalendar</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite poziciju ikone</label>
+   <select name="select-choice-1" id="select-choice-1-1-1">
+      <option value="left">Lijevo</option>
+      <option value="right">Desno</option>
+      <option value="top">Gore</option>
+      <option value="bottom">Dolje</option>
+   </select>
+</div>
+  
+  
+  <input id="add8" type="submit" value="Dodaj" />
+  <button id="clear8">Obriši</button>
+  </form>
+  <ul id="todos8"></ul>
+  <script>
+      $('#add8').click( function() {
+   var Description8 = $('#description8').val();
+   var naziv8 = $('#naziv8').val();
+   var tema8 = $('#select-choice-1').val();
+   var icon8 = $('#select-choice-1-1').val();
+   var poz8 = $('#select-choice-1-1-1').val();
+  if($("#description8").val() === '') {
+    alert("Niste unijeli sve podatke!");
+    return false;
+   }
+   $('#todos8').prepend('<a href="'+ Description8 +' " data-role="button" style="margin-left: -40px;"data-theme="'+ tema8 +'" data-iconpos="'+ poz8 +'" data-icon="'+icon8+'">' + naziv8 + '<a>');
+   $('#form8')[0].reset();
+   var todos = $('#todos8').html();
+   localStorage.setItem('todos8', todos);
+   location.reload();
+   return false;
+});
+
+if(localStorage.getItem('todos8')) {
+$('#todos8').html(localStorage.getItem('todos8'));
+}
+
+$('#clear8').click( function() {
+localStorage.removeItem('todos8');
+location.reload();
+return false;
+});
+  </script>
+  
+            </div>
+            <div data-role="footer" data-theme="c" data-position="fixed">
+                <h2>Sjever rocks!</h2>
+            </div>
+        </div> 
+        
+        <div data-role="page" id="page9" data-theme="c"><!--početak page9-->
+            
+            <div data-role="header" data-position="fixed" data-theme="b">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="b"></a><h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content">
+                <h2>Odjel za poslovanje i menadžment u medijima</h2>
+                <img src="img/pmm.jpg"/>
+                <a href="http://www.unin.hr/category/pmm/" data-role="button" data-theme="d" data-iconpos="right" data-icon="info">Obavijesti</a>
+                <a href="https://login.aaiedu.hr/sso/module.php/core/loginuserpass.php?AuthState=_677462ef18525c8e8cd10c901aa888e40fd7c1c6ff%3Ahttps%3A%2F%2Flogin.aaiedu.hr%2Fsso%2Fsaml2%2Fidp%2FSSOService.php%3Fspentityid%3Dgoogle.com%252Fa%252Funin.hr%26cookieTime%3D1438178255%26RelayState%3Dhttps%253A%252F%252Fwww.google.com%252Fa%252Funin.hr%252FServiceLogin%253Fservice%253Dmail%2526passive%253Dtrue%2526rm%253Dfalse%2526continue%253Dhttps%25253A%25252F%25252Fmail.google.com%25252Fa%25252Funin.hr%25252F%2526ss%253D1%2526ltmpl%253Ddefault%2526ltmplcache%253D2%2526emr%253D1" data-role="button" data-theme="d" data-iconpos="right" data-icon="mail">Mail</a>
+                <a href="https://moodle.kc.unin.hr/moodle/login/index.php" data-role="button" data-theme="d" data-iconpos="right" data-icon="book">Moodle</a>
+                <a href="https://www.isvu.hr/studomat/prijava?site_preference=mobile" data-role="button" data-theme="d" data-iconpos="right" data-icon="pencil">Studomat</a>
+                <ul id="todos9"></ul>
+                <center><strong>Želite li kreirati vlastite gumb poveznice?<br>Kliknite na gumb</strong></center>
+                <a href="#dialog9" data-role="button" data-theme="d">Stvori</a>
+            </div>
+            <div data-role="footer" data-theme="b" data-position="fixed">
+                <div data-role="navbar">
+		<ul>
+                    <li id="page1"><a href="odjeli.html" data-icon="th" data-ajax="false" class="ui-btn-active ui-state-persist">Odjeli</a></li>
+                    <li id="page2"><a href="profesori.html" data-icon="list" data-ajax="false">Profesori</a></li>
+                    <li id="page3"><a href="rss.html" data-icon="rss" data-ajax="false">RSS feed</a></li> 
+		</ul>
+	</div>
+    </div>
+            
+        </div><!--kraj page9-->
+        <div data-role="dialog" id="dialog9" data-theme="d" ><!--početak dialog-->
+            
+            <div data-role="header" data-add-back-btn="true" data-theme="c">
+                <h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content" id="bbb" data-theme="c">
+                       
+  <form id="form9" action="#" method="POST">
+  <label for="select-choice-1" class="select">Zalijepite ili upišite poveznicu</label>
+  <input id="description9" name="description" type="text" />
+  <label for="select-choice-1" class="select">Upišite naziv</label>
+  <input id="naziv9" name="naziv" type="text" />
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite boju gumba</label>
+   <select name="select-choice-1" id="select-choice-1">
+      <option id="a" value="a">Plava</option>
+      <option id="b" value="b">Crvena</option>
+      <option id="c" value="c">Siva</option>
+      <option id="d" value="d">Crna</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite ikonu</label>
+   <select name="select-choice-1" id="select-choice-1-1">
+      <option value="facebook">Facebook</option>
+      <option value="book">Knjiga</option>
+      <option value="info">Info</option>
+      <option value="archive">Arhiva</option>
+      <option value="calendar">Kalendar</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite poziciju ikone</label>
+   <select name="select-choice-1" id="select-choice-1-1-1">
+      <option value="left">Lijevo</option>
+      <option value="right">Desno</option>
+      <option value="top">Gore</option>
+      <option value="bottom">Dolje</option>
+   </select>
+</div>
+  
+  
+  <input id="add9" type="submit" value="Dodaj" />
+  <button id="clear9">Obriši</button>
+  </form>
+  <ul id="todos"></ul>
+  <script>
+      $('#add9').click( function() {
+   var Description9 = $('#description9').val();
+   var naziv9 = $('#naziv9').val();
+   var tema9 = $('#select-choice-1').val();
+   var icon9 = $('#select-choice-1-1').val();
+   var poz9 = $('#select-choice-1-1-1').val();
+  if($("#description9").val() === '') {
+    alert("Niste unijeli sve podatke!");
+    return false;
+   }
+   $('#todos9').prepend('<a href="'+ Description9 +' " data-role="button" style="margin-left: -40px;"data-theme="'+ tema9 +'" data-iconpos="'+ poz9 +'" data-icon="'+icon9+'">' + naziv9 + '<a>');
+   $('#form9')[0].reset();
+   var todos = $('#todos9').html();
+   localStorage.setItem('todos9', todos);
+   location.reload();
+   return false;
+});
+
+if(localStorage.getItem('todos9')) {
+$('#todos9').html(localStorage.getItem('todos9'));
+}
+
+$('#clear9').click( function() {
+localStorage.removeItem('todos9');
+location.reload();
+return false;
+});
+  </script>
+  
+            </div>
+            <div data-role="footer" data-theme="c" data-position="fixed">
+                <h2>Sjever rocks!</h2>
+            </div>
+        </div> 
+        
+        <div data-role="page" id="page10" data-theme="c"><!--početak page10-->
+            
+            <div data-role="header" data-position="fixed" data-theme="b">
+               <a href="#" data-rel="back" data-icon="arrow-l" data-theme="b"></a> <h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content">
+                <h2>Odjel za poslovnu ekonomiju</h2>
+                <img src="img/pe.jpg"/>
+                <a href="http://www.unin.hr/category/pe/" data-role="button" data-theme="d" data-iconpos="right" data-icon="info">Obavijesti</a>
+                <a href="https://login.aaiedu.hr/sso/module.php/core/loginuserpass.php?AuthState=_677462ef18525c8e8cd10c901aa888e40fd7c1c6ff%3Ahttps%3A%2F%2Flogin.aaiedu.hr%2Fsso%2Fsaml2%2Fidp%2FSSOService.php%3Fspentityid%3Dgoogle.com%252Fa%252Funin.hr%26cookieTime%3D1438178255%26RelayState%3Dhttps%253A%252F%252Fwww.google.com%252Fa%252Funin.hr%252FServiceLogin%253Fservice%253Dmail%2526passive%253Dtrue%2526rm%253Dfalse%2526continue%253Dhttps%25253A%25252F%25252Fmail.google.com%25252Fa%25252Funin.hr%25252F%2526ss%253D1%2526ltmpl%253Ddefault%2526ltmplcache%253D2%2526emr%253D1" data-role="button" data-theme="d" data-iconpos="right" data-icon="mail">Mail</a>
+                <a href="https://moodle.kc.unin.hr/moodle/login/index.php" data-role="button" data-theme="d" data-iconpos="right" data-icon="book">Moodle</a>
+                <a href="https://www.isvu.hr/studomat/prijava?site_preference=mobile" data-role="button" data-theme="d" data-iconpos="right" data-icon="pencil">Studomat</a>
+                <ul id="todos10"></ul>
+                <center><strong>Želite li kreirati vlastite gumb poveznice?<br>Kliknite na gumb</strong></center>
+                <a href="#dialog10" data-role="button" data-theme="d">Stvori</a>
+            </div>
+            <div data-role="footer" data-theme="b" data-position="fixed">
+                <div data-role="navbar">
+		<ul>
+                    <li id="page1"><a href="odjeli.html" data-icon="th" data-ajax="false" class="ui-btn-active ui-state-persist">Odjeli</a></li>
+                    <li id="page2"><a href="profesori.html" data-icon="list" data-ajax="false">Profesori</a></li>
+                    <li id="page3"><a href="rss.html" data-icon="rss" data-ajax="false">RSS feed</a></li> 
+		</ul>
+	</div>
+    </div>
+            
+        </div><!--kraj page10-->
+        <div data-role="dialog" id="dialog10" data-theme="d" ><!--početak dialog-->
+            
+            <div data-role="header" data-add-back-btn="true" data-theme="c">
+                <h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content" id="bbb" data-theme="c">
+                       
+  <form id="form410" action="#" method="POST">
+  <label for="select-choice-1" class="select">Zalijepite ili upišite poveznicu</label>
+  <input id="description10" name="description" type="text" />
+  <label for="select-choice-1" class="select">Upišite naziv</label>
+  <input id="naziv10" name="naziv" type="text" />
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite boju gumba</label>
+   <select name="select-choice-1" id="select-choice-1">
+      <option id="a" value="a">Plava</option>
+      <option id="b" value="b">Crvena</option>
+      <option id="c" value="c">Siva</option>
+      <option id="d" value="d">Crna</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite ikonu</label>
+   <select name="select-choice-1" id="select-choice-1-1">
+      <option value="facebook">Facebook</option>
+      <option value="book">Knjiga</option>
+      <option value="info">Info</option>
+      <option value="archive">Arhiva</option>
+      <option value="calendar">Kalendar</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite poziciju ikone</label>
+   <select name="select-choice-1" id="select-choice-1-1-1">
+      <option value="left">Lijevo</option>
+      <option value="right">Desno</option>
+      <option value="top">Gore</option>
+      <option value="bottom">Dolje</option>
+   </select>
+</div>
+  
+  
+  <input id="add10" type="submit" value="Dodaj" />
+  <button id="clear10">Obriši</button>
+  </form>
+  <ul id="todos"></ul>
+  <script>
+      $('#add10').click( function() {
+   var Description10 = $('#description10').val();
+   var naziv10 = $('#naziv10').val();
+   var tema10 = $('#select-choice-1').val();
+   var icon10 = $('#select-choice-1-1').val();
+   var poz10 = $('#select-choice-1-1-1').val();
+  if($("#description10").val() === '') {
+    alert("Niste unijeli sve podatke!");
+    return false;
+   }
+   $('#todos10').prepend('<a href="'+ Description10 +' " data-role="button" style="margin-left: -40px;"data-theme="'+ tema10 +'" data-iconpos="'+ poz10 +'" data-icon="'+icon10+'">' + naziv10 + '<a>');
+   $('#form10')[0].reset();
+   var todos = $('#todos10').html();
+   localStorage.setItem('todos10', todos);
+   location.reload();
+   return false;
+});
+
+if(localStorage.getItem('todos10')) {
+$('#todos10').html(localStorage.getItem('todos10'));
+}
+
+$('#clear10').click( function() {
+localStorage.removeItem('todos10');
+location.reload();
+return false;
+});
+  </script>
+  
+            </div>
+            <div data-role="footer" data-theme="c" data-position="fixed">
+                <h2>Sjever rocks!</h2>
+            </div>
+        </div> 
+        
+        <div data-role="page" id="page11" data-theme="c"><!--početak page11-->
+            
+            <div data-role="header" data-position="fixed" data-theme="b">
+                <a href="#" data-rel="back" data-icon="arrow-l" data-theme="b"></a><h3>Sjeveroljubac</h3>
+                
+            </div>
+            <div data-role="content">
+                <h2>Odjel za komunikologiju i odnose s javnošću</h2>
+                <img src="img/oj.jpg"/>
+                <a href="http://www.unin.hr/category/oj/" data-role="button" data-theme="d" data-iconpos="right" data-icon="info">Obavijesti</a>
+                <a href="https://login.aaiedu.hr/sso/module.php/core/loginuserpass.php?AuthState=_677462ef18525c8e8cd10c901aa888e40fd7c1c6ff%3Ahttps%3A%2F%2Flogin.aaiedu.hr%2Fsso%2Fsaml2%2Fidp%2FSSOService.php%3Fspentityid%3Dgoogle.com%252Fa%252Funin.hr%26cookieTime%3D1438178255%26RelayState%3Dhttps%253A%252F%252Fwww.google.com%252Fa%252Funin.hr%252FServiceLogin%253Fservice%253Dmail%2526passive%253Dtrue%2526rm%253Dfalse%2526continue%253Dhttps%25253A%25252F%25252Fmail.google.com%25252Fa%25252Funin.hr%25252F%2526ss%253D1%2526ltmpl%253Ddefault%2526ltmplcache%253D2%2526emr%253D1" data-role="button" data-theme="d" data-iconpos="right" data-icon="mail">Mail</a>
+                <a href="https://moodle.kc.unin.hr/moodle/login/index.php" data-role="button" data-theme="d" data-iconpos="right" data-icon="book">Moodle</a>
+                <a href="https://www.isvu.hr/studomat/prijava?site_preference=mobile" data-role="button" data-theme="d" data-iconpos="right" data-icon="pencil">Studomat</a>
+                <ul id="todos11"></ul>
+                <center><strong>Želite li kreirati vlastite gumb poveznice?<br>Kliknite na gumb</strong></center>
+                <a href="#dialog11" data-role="button" data-theme="d">Stvori</a>
+            </div>
+            <div data-role="footer" data-theme="b" data-position="fixed">
+                <div data-role="navbar">
+		<ul>
+                    <li id="page1"><a href="odjeli.html" data-icon="th" data-ajax="false" class="ui-btn-active ui-state-persist">Odjeli</a></li>
+                    <li id="page2"><a href="profesori.html" data-icon="list" data-ajax="false">Profesori</a></li>
+                    <li id="page3"><a href="rss.html" data-icon="rss" data-ajax="false">RSS feed</a></li> 
+		</ul>
+	</div>
+            </div>
+            
+        </div><!--kraj page11-->
+        <div data-role="dialog" id="dialog11" data-theme="d" ><!--početak dialog-->
+            
+            <div data-role="header" data-add-back-btn="true" data-theme="c">
+                <h3>Sjeveroljubac</h3>
+            </div>
+            <div data-role="content" id="bbb" data-theme="c">
+                       
+  <form id="form11" action="#" method="POST">
+  <label for="select-choice-1" class="select">Zalijepite ili upišite poveznicu</label>
+  <input id="description11" name="description" type="text" />
+  <label for="select-choice-1" class="select">Upišite naziv</label>
+  <input id="naziv11" name="naziv" type="text" />
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite boju gumba</label>
+   <select name="select-choice-1" id="select-choice-1">
+      <option id="a" value="a">Plava</option>
+      <option id="b" value="b">Crvena</option>
+      <option id="c" value="c">Siva</option>
+      <option id="d" value="d">Crna</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite ikonu</label>
+   <select name="select-choice-1" id="select-choice-1-1">
+      <option value="facebook">Facebook</option>
+      <option value="book">Knjiga</option>
+      <option value="info">Info</option>
+      <option value="archive">Arhiva</option>
+      <option value="calendar">Kalendar</option>
+   </select>
+</div>
+  <div data-role="fieldcontain">
+   <label for="select-choice-1" class="select">Odaberite poziciju ikone</label>
+   <select name="select-choice-1" id="select-choice-1-1-1">
+      <option value="left">Lijevo</option>
+      <option value="right">Desno</option>
+      <option value="top">Gore</option>
+      <option value="bottom">Dolje</option>
+   </select>
+</div>
+  
+  
+  <input id="add11" type="submit" value="Dodaj" />
+  <button id="clear11">Obriši</button>
+  </form>
+  <ul id="todos"></ul>
+  <script>
+      $('#add11').click( function() {
+   var Description11 = $('#description11').val();
+   var naziv11 = $('#naziv11').val();
+   var tema11 = $('#select-choice-1').val();
+   var icon11 = $('#select-choice-1-1').val();
+   var poz11 = $('#select-choice-1-1-1').val();
+  if($("#description11").val() === '') {
+    alert("Niste unijeli sve podatke!");
+    return false;
+   }
+   $('#todos11').prepend('<a href="'+ Description11 +' " data-role="button" style="margin-left: -40px;"data-theme="'+ tema11 +'" data-iconpos="'+ poz11 +'" data-icon="'+icon11+'">' + naziv11 + '<a>');
+   $('#form11')[0].reset();
+   var todos = $('#todos11').html();
+   localStorage.setItem('todos11', todos);
+   location.reload();
+   return false;
+});
+
+if(localStorage.getItem('todos11')) {
+$('#todos11').html(localStorage.getItem('todos11'));
+}
+
+$('#clear11').click( function() {
+localStorage.removeItem('todos11');
+location.reload();
+return false;
+});
+  </script>
+  
+            </div>
+            <div data-role="footer" data-theme="c" data-position="fixed">
+                <h2>Sjever rocks!</h2>
+            </div>
+        </div> 
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+    </body>
+</html>
